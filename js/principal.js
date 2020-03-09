@@ -37,7 +37,7 @@ for(var i =0; i< paciente.length ; i++){
 	}
 	else{
 		tdImc.textContent = 'Altura e/ou peso inválidos!';
-		paciente[i].style.backgroundColor = 'lightcoral';
+		paciente[i].classList.add('paciente-invalido');
 	}
 
 }
