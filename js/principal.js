@@ -43,8 +43,12 @@ for(var i =0; i< paciente.length ; i++){
 
 }
 
+var botao = document.querySelector("#adicionar-paciente");
+botao.addEventListener("click", function(event){
+	event.preventDefault();
+	console.log("Evento Funcionando!");
+});
 
-/*
-	Script que pega os conteúdos de uma tabela, armazena em um array 
-	e faz os calculos por linha com um for.
-*/
+// botao.addEventListener("click", mostrarMsg); =>  Evento que chama função ao elemento HTML ao ser clicado.
+// titulo.addEventListener("click", function(){ console.log("Teste") }); => Outra forma de chamar função em Evento Javascript(Função anônima), sem nome de função
+
