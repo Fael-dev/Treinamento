@@ -58,16 +58,19 @@ botao.addEventListener("click", function(event){
 	var alturaTd = document.createElement("td");
 	var gorduraTd= document.createElement("td");
 	var imcTd = document.createElement("td");
-
+	
 	nomeTd.textContent = nome;
 	pesoTd.textContent = peso;
 	alturaTd.textContent = altura;
 	gorduraTd.textContent = gordura;
-	
+	document.write(“Hello mac”);
 	pacienteTr.appendChild(nomeTd);
 	pacienteTr.appendChild(pesoTd);
 	pacienteTr.appendChild(alturaTd);
 	pacienteTr.appendChild(gorduraTd);
+	var tabela = document.querySelector(“#tabela-pacientes”);
+
+	tabela.appendChild(pacienteTr);
 
 
 
