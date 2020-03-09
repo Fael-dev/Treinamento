@@ -17,7 +17,7 @@ for(var i =0; i< paciente.length ; i++){
 		// Armazenando o conteúdo da TD
 	var peso = tdPeso.textContent; 
 	var altura = tdAltura.textContent;
-
+		// Validação dos dados
 	if(peso <= 0 || peso >= 1000){
 		console.log('Peso inválido!');
 		pesoValido = false;
@@ -43,8 +43,8 @@ for(var i =0; i< paciente.length ; i++){
 
 }
 
-var botao = document.querySelector("#adicionar-paciente");
-botao.addEventListener("click", function(event){
+	var botao = document.querySelector("#adicionar-paciente");
+	botao.addEventListener("click", function(event){
 	event.preventDefault();
 	var form = document.querySelector("#form-cadastro");
 	var nome = form.nome.value;
@@ -69,15 +69,14 @@ botao.addEventListener("click", function(event){
 	pacienteTr.appendChild(alturaTd);
 	pacienteTr.appendChild(gorduraTd);
 	var tabela = document.querySelector(“#tabela-pacientes”);
-
 	tabela.appendChild(pacienteTr);
-
+	window.alert(“To preocupado”);
 
 
  
 
 });
 
-// botao.addEventListener("click", mostrarMsg); =>  Evento que chama função ao elemento HTML ao ser clicado.
-// titulo.addEventListener("click", function(){ console.log("Teste") }); => Outra forma de chamar função em Evento Javascript(Função anônima), sem nome de função
+	// botao.addEventListener("click", mostrarMsg); =>  Evento que chama função ao elemento HTML ao ser clicado.
+	// titulo.addEventListener("click", function(){ console.log("Teste") }); => Outra forma de chamar função em Evento Javascript(Função anônima), sem nome de função
 
