@@ -1,7 +1,7 @@
 var titulo = document.querySelector('.titulo');
 titulo.textContent = 'Aparecida nutricionista';
 
-	// Acessando as linhas da tabela e armazenando conteúdos de TDs em variáveisdo primeiro paciente
+// Acessando as linhas da tabela e armazenando conteúdos de TDs em variáveisdo primeiro paciente
 
 var paciente = document.querySelectorAll('.paciente');
 console.log(paciente);
@@ -10,14 +10,14 @@ for(var i =0; i< paciente.length ; i++){
 	var tdPeso = paciente[i].querySelector('.info-peso');           
 	var tdAltura = paciente[i].querySelector('.info-altura');	     	
 	var tdImc = paciente[i].querySelector('.info-imc');
-		// Variáveis de validação
+	// Variáveis de validação
 	var pesoValido = true;
 	var alturaValida = true;	     
 
-		// Armazenando o conteúdo da TD
+	// Armazenando o conteúdo da TD
 	var peso = tdPeso.textContent; 
 	var altura = tdAltura.textContent;
-		// Validação dos dados
+	// Validação dos dados
 	if(peso <= 0 || peso >= 1000){
 		console.log('Peso inválido!');
 		pesoValido = false;
@@ -29,9 +29,9 @@ for(var i =0; i< paciente.length ; i++){
 		tdImc.textContent = 'Altura inválida';
 	}
 	if (alturaValida && pesoValido){
-			// Realizando o cálculo do IMC			     
+		// Realizando o cálculo do IMC			     
 		var imc = peso/(altura*altura);
-			// Printando calculo IMC em TD da linha
+		// Printando calculo IMC em TD da linha
 		tdImc.textContent = imc.toFixed(2);
 		console.log(imc);	
 	}
@@ -63,17 +63,13 @@ for(var i =0; i< paciente.length ; i++){
 	pesoTd.textContent = peso;
 	alturaTd.textContent = altura;
 	gorduraTd.textContent = gordura;
-	document.write(“Hello mac”);
 	pacienteTr.appendChild(nomeTd);
 	pacienteTr.appendChild(pesoTd);
 	pacienteTr.appendChild(alturaTd);
 	pacienteTr.appendChild(gorduraTd);
-	var tabela = document.querySelector(“#tabela-pacientes”);
+	var tabela = document.querySelector("#tabela-pacientes");
 	tabela.appendChild(pacienteTr);
-	window.alert(“To preocupado”);
 
-
- 
 
 });
 
