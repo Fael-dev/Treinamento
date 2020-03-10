@@ -1,0 +1,20 @@
+ @========================================*
+	*var titulo = document.querySelector("X"); => Seleciona 
+	  	um elemento HTML ou CSS, onde 'X' pode ser uma TAG, .CLASS ou #ID. 
+
+	*titulo.textContent = "Alterando conteúdo";
+		.textContent => Altera conteúdo do elemento.
+
+	*.classList.add("classe") => Adiciona uma classe á uma TAG.
+
+	*.toFixed(nº); => Determina quantas casas decimais terá 	o número.
+
+	*.addEventListener("click", função); => Adiciona uma 		função em um evento "click".
+
+	*.addEventListener("click", function(){}); => Adiciona 		uma função anônima a um evento "click".
+
+	*event.preventDefault(); => Evita o carregamento da 		página ao enviar um formulário.
+	*var tr = document.createElement("tr"); => Cria uma tag.
+	 var table = document.createElement("table"); => Cria uma tag.
+	 table.appendChild(tr); => Adiciona um elemento "Filho"  dentro de outro elemento HTML.
+
