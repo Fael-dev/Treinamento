@@ -187,9 +187,17 @@ for(var i =0; i< paciente.length ; i++){
 	====================================================================== */
 	
 	var tabela = document.querySelector("#tabela-pacientes");
-	tabela.addEventListener("click", function(){
-		event.target.parentNode.remove();	// event target seleciona o elemento filho que foi clicado(TD) e o 										// parentNode seleciona o pai do elemento (TR)
+	tabela.addEventListener("click", function(event){
+	
+		event.target.parentNode.classList.add("fedeOut");
+	
+		setTimeout(function(){
+			event.target.parentNode.remove();
+		}, 500);
 	});
+
+	// event target seleciona o elemento filho que foi clicado(TD) e o 										// parentNode seleciona o pai do elemento (TR)
+
 
 
 
