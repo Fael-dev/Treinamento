@@ -28,9 +28,9 @@ for(var i =0; i< paciente.length ; i++){
 	}
 	if (alturaValida && pesoValido){
 		// Realizando o cálculo do IMC			     
-		var imc = peso/(altura*altura);
+		var imc = calculaImc(peso,altura);
 		// Printando calculo IMC na TD da linha
-		tdImc.textContent = imc.toFixed(2);
+		tdImc.textContent = imc;
 		console.log(imc);	
 	}
 	else{
@@ -40,36 +40,26 @@ for(var i =0; i< paciente.length ; i++){
 	}
 }
 
+	function calculaImc(peso,altura){
+		var imc = 0;
+		imc = peso/(altura*altura);
+		return imc.toFixed(2);
+	}
+
+    //===========================================================
+    // SEPARAR ESSE BLOCO DE CÓDIGO ABAIXO EM OUTRO ARQUIVO FORM.JS
+    //===========================================================
+
 	var botao = document.querySelector("#adicionar-paciente");
 	botao.addEventListener("click", function(event){
 		event.preventDefault();
-		var form = document.querySelector("#form-cadastro");
-
-		//Pega os valores digitados no formulário
-		var nome = form.nome.value;
-		var peso = form.peso.value;
-		var altura = form.altura.value;
-		var gordura = form.gordura.value;
-
-		//Criando linhas(tr) e colunas(td), para receber os valores do formulário
-		var pacienteTr = document.createElement("tr");
-		var nomeTd = document.createElement("td");
-		var pesoTd= document.createElement("td");
-		var alturaTd = document.createElement("td");
-		var gorduraTd= document.createElement("td");
-		var imcTd = document.createElement("td");
 		
-		//Armazenando os valores do formulário, nas novas células
-		nomeTd.textContent = nome;
-		pesoTd.textContent = peso;
-		alturaTd.textContent = altura;
-		gorduraTd.textContent = gordura;
-
-		//Adicionando as TDs(colunas) já com os valores dentro da TR(linha)
-		pacienteTr.appendChild(nomeTd);
-		pacienteTr.appendChild(pesoTd);
-		pacienteTr.appendChild(alturaTd);
-		pacienteTr.appendChild(gorduraTd);
+		var form = document.querySelector("#form-cadastro");
+		//Chamando função que ontem os dados do formulário
+		var paciente = obtemPacienteForm(form);
+		
+		//Chamando função que monta a linha
+		var pacienteTr = montarTr(paciente);
 
 		//Armazenando a tabela em uma variável, pelo ID.
 		var tabela = document.querySelector("#tabela-pacientes");
@@ -77,7 +67,59 @@ for(var i =0; i< paciente.length ; i++){
 		//Adicionando a linha de conteúdo criada dentro da tabela
 		tabela.appendChild(pacienteTr);
 
+		});
+		
+		//Funcao de obter paciente pelo formulário
+		
+		function obtemPacienteForm(form){
 
-});
+			var paciente = {
+				nome: form.nome.value,
+				peso: form.peso.value,
+				altura: form.peso.value,
+				gordura: form.gordura.value,
+				imc: calculaImc(form.peso.value, form.altura.value)
+			}			
+			return paciente;
+		}
+		
+		// Funcao de montar TR
+		
+		function montarTr(paciente){
+			var pacienteTr = document.createElement("tr");	
+			var nomeTd = document.createElement("td");
+			var pesoTd= document.createElement("td");
+			var alturaTd = document.createElement("td");
+			var gorduraTd= document.createElement("td");
+			var imcTd = document.createElement("td");
+		
+			//Armazenando os valores do formulário, nas novas células
+			nomeTd.textContent = paciente.nome;
+			pesoTd.textContent = paciente.peso;
+			alturaTd.textContent = paciente.altura;
+			gorduraTd.textContent = paciente.gordura;
+			imcTd.textContent = paciente.imc;
+
+			//Adicionando as TDs(colunas) já com os valores dentro da TR(linha)
+			pacienteTr.appendChild(nomeTd);
+			pacienteTr.appendChild(pesoTd);
+			pacienteTr.appendChild(alturaTd);
+			pacienteTr.appendChild(gorduraTd);
+			pacienteTr.appendChild(imcTd);
+			
+			return pacienteTr;
+		}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
