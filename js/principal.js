@@ -51,6 +51,7 @@ for(var i =0; i< paciente.length ; i++){
     //===========================================================
 
 	var botao = document.querySelector("#adicionar-paciente");
+
 	botao.addEventListener("click", function(event){
 		event.preventDefault();
 		
@@ -67,7 +68,10 @@ for(var i =0; i< paciente.length ; i++){
 		//Adicionando a linha de conteúdo criada dentro da tabela
 		tabela.appendChild(pacienteTr);
 
-		});
+		//Limpando formulário
+		form.reset();
+
+	});
 		
 		//Funcao de obter paciente pelo formulário
 		
@@ -86,28 +90,24 @@ for(var i =0; i< paciente.length ; i++){
 		// Funcao de montar TR
 		
 		function montarTr(paciente){
-			var pacienteTr = document.createElement("tr");	
-			var nomeTd = document.createElement("td");
-			var pesoTd= document.createElement("td");
-			var alturaTd = document.createElement("td");
-			var gorduraTd= document.createElement("td");
-			var imcTd = document.createElement("td");
-		
-			//Armazenando os valores do formulário, nas novas células
-			nomeTd.textContent = paciente.nome;
-			pesoTd.textContent = paciente.peso;
-			alturaTd.textContent = paciente.altura;
-			gorduraTd.textContent = paciente.gordura;
-			imcTd.textContent = paciente.imc;
-
-			//Adicionando as TDs(colunas) já com os valores dentro da TR(linha)
-			pacienteTr.appendChild(nomeTd);
-			pacienteTr.appendChild(pesoTd);
-			pacienteTr.appendChild(alturaTd);
-			pacienteTr.appendChild(gorduraTd);
-			pacienteTr.appendChild(imcTd);
+			var pacienteTr = document.createElement("tr");
+			pacienteTr.classList.add("paciente");
+			console.log(pacienteTr);
+	
+			// Montando as TDs, adicionando conteúdo e classe - E adicionando as TDs d	a TR
+			pacienteTr.appendChild(montaTd(paciente.nome, "info-nome"));
+			pacienteTr.appendChild(montaTd(paciente.peso, "info-peso"));
+			pacienteTr.appendChild(montaTd(paciente.altura, "info-altura"));
+			pacienteTr.appendChild(montaTd(paciente.gordura, "info-gordura"));
+			pacienteTr.appendChild(montaTd(paciente.imc, "info-imc"));
 			
 			return pacienteTr;
+		}
+		function montaTd(dado, classe){
+			var td = document.createElement("td"); // Cria uma TD
+			td.textContent = dado;			  // Adiciona o conteúdo
+			td.classList.add(classe);			  // Adiciona a classe
+			return td;
 		}
 
 
