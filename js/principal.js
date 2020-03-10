@@ -170,8 +170,19 @@ for(var i =0; i< paciente.length ; i++){
 			return erros;
 		}
 
+     //===========================================================
+     // SEPARAR ESSE BLOCO DE CÓDIGO ABAIXO EM OUTRO ARQUIVO REMOVER-PACIENTES.JS
+     //===========================================================
+	
+	var pacientes = document.querySelectorAll(".paciente");
 
-
+	pacientes.forEach(function(paciente){
+		paciente.addEventListener("click", function(){
+			console.log("Fui clicado com duplo click");
+			this.remove(); //THIS está atrelado ao elemento que sofre o evento, no caso o `paciente`
+		});
+		
+	});
 
 
 
