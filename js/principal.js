@@ -83,7 +83,8 @@ for(var i =0; i< paciente.length ; i++){
 		var pacienteTr = montarTr(paciente);
 		
 		var erros = validaPaciente(paciente);
-		console.log(erros);
+		
+		
 		if(erros.length > 0){
 			exibeMsgErros(erros);
 			return;
@@ -97,12 +98,14 @@ for(var i =0; i< paciente.length ; i++){
 
 		//Limpando formulário
 		form.reset();
-
+		var msgErro = document.querySelector("#mensagens-erro");
+		msgErro.innerHTML = "";
 	});
 
 	
 		function exibeMsgErros(erros){
 			var ul = document.querySelector("#mensagens-erro");
+			ul.innerHTML= ""
 			erros.forEach(function(erro){
 				var li = document.createElement("li");
 				li.textContent = erro;
@@ -156,8 +159,14 @@ for(var i =0; i< paciente.length ; i++){
 		function validaPaciente(paciente){
 
 			var erros = [];
+			
+			if(paciente.nome.length == 0) erros.push("O nome não pode ficar em branco!");
 			if(!validaPeso(paciente.peso))  erros.push("Peso é inválido!"); 
-			if(!validaAltura(paciente.altura))  erros.push("Altura é inválida!");	
+			if(!validaAltura(paciente.altura))  erros.push("Altura é inválida!");
+			if(paciente.altura.length == 0 ) erros.push("A altura não pode ficar em branco!");	
+			if(paciente.peso.length == 0 ) erros.push("O peso não pode ficar em branco!");
+			if(paciente.gordura.length == 0) erros.push("A gordura não pode ficar em branco!");
+
 			return erros;
 		}
 
