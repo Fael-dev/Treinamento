@@ -9,27 +9,27 @@ for(var i =0; i< paciente.length ; i++){
 	var tdAltura = paciente[i].querySelector('.info-altura');	     	
 	var tdImc = paciente[i].querySelector('.info-imc');
 
-	// Armazenando o conteúdo da TD
+	// Armazenando o conteúdo da TD ================
 	var peso = tdPeso.textContent; 
 	var altura = tdAltura.textContent;
 
-	// Variáveis de validação
-	var pesoValido = true;
-	var alturaValida = true;	     
+	// Variáveis de validação ======================
+	var pesoValido = validaPeso(peso);
+	var alturaValida = validaAltura(altura);	     
 
-	// Validação dos dados
-	if(peso <= 0 || peso >= 1000){
-		console.log('Peso inválido!');
+	// Validação dos dados =========================
+	if(!pesoValido){ 
+		paciente[i].classList.add("paciente-invalido");
 		pesoValido = false;
 	}
-	if(altura <= 0 || altura >= 3.00){
-		console.log('Altura inválida');
+	if(!alturaValida){
+		paciente[i].classList.add("paciente-invalido");
 		alturaValida = false;
 	}
 	if (alturaValida && pesoValido){
-		// Realizando o cálculo do IMC			     
+		// Realizando o cálculo do IMC ============     
 		var imc = calculaImc(peso,altura);
-		// Printando calculo IMC na TD da linha
+		// Printando calculo IMC na TD da linha ===
 		tdImc.textContent = imc;
 		console.log(imc);	
 	}
@@ -38,13 +38,33 @@ for(var i =0; i< paciente.length ; i++){
 		paciente[i].classList.add('paciente-invalido'); 
 		// paciente[i].style.backgroundColor = 'red'; => Outra forma
 	}
-}
+	}
 
 	function calculaImc(peso,altura){
 		var imc = 0;
 		imc = peso/(altura*altura);
 		return imc.toFixed(2);
 	}
+	
+	function validaPeso(peso){
+		if(peso >= 0 && peso < 1000){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	function validaAltura(altura){
+		if(altura >= 0 && altura <= 3.0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}	
+				
+	
+
 
     //===========================================================
     // SEPARAR ESSE BLOCO DE CÓDIGO ABAIXO EM OUTRO ARQUIVO FORM.JS
@@ -61,7 +81,14 @@ for(var i =0; i< paciente.length ; i++){
 		
 		//Chamando função que monta a linha
 		var pacienteTr = montarTr(paciente);
-
+		
+		var erros = validaPaciente(paciente);
+		console.log(erros);
+		if(erros.length > 0){
+			exibeMsgErros(erros);
+			return;
+		}
+		
 		//Armazenando a tabela em uma variável, pelo ID.
 		var tabela = document.querySelector("#tabela-pacientes");
 		
@@ -72,6 +99,17 @@ for(var i =0; i< paciente.length ; i++){
 		form.reset();
 
 	});
+
+	
+		function exibeMsgErros(erros){
+			var ul = document.querySelector("#mensagens-erro");
+			erros.forEach(function(erro){
+				var li = document.createElement("li");
+				li.textContent = erro;
+				ul.appendChild(li);
+			});
+		}
+		
 		
 		//Funcao de obter paciente pelo formulário
 		
@@ -80,7 +118,7 @@ for(var i =0; i< paciente.length ; i++){
 			var paciente = {
 				nome: form.nome.value,
 				peso: form.peso.value,
-				altura: form.peso.value,
+				altura: form.altura.value,
 				gordura: form.gordura.value,
 				imc: calculaImc(form.peso.value, form.altura.value)
 			}			
@@ -103,11 +141,24 @@ for(var i =0; i< paciente.length ; i++){
 			
 			return pacienteTr;
 		}
+		
+		//Funcao monta TD
+
 		function montaTd(dado, classe){
 			var td = document.createElement("td"); // Cria uma TD
 			td.textContent = dado;			  // Adiciona o conteúdo
 			td.classList.add(classe);			  // Adiciona a classe
 			return td;
+		}
+
+		// Funcao valida paciente
+	
+		function validaPaciente(paciente){
+
+			var erros = [];
+			if(!validaPeso(paciente.peso))  erros.push("Peso é inválido!"); 
+			if(!validaAltura(paciente.altura))  erros.push("Altura é inválida!");	
+			return erros;
 		}
 
 
