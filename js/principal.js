@@ -110,18 +110,21 @@ for(var i =0; i< paciente.length ; i++){
 		xhr.open("GET", "https://api-pacientes.herokuapp.com/pacientes");
 		
 		xhr.addEventListener("load", function(){
-			var resposta =  xhr.responseText;
-			var pacientes = JSON.parse(resposta);
-			/* FOR NORMAL ====
-				for( var i =0; i == pacientes.lentgh; i++ ){
-					addPacienteTabela(pacientes[i]);
-				}
-			*/
-			// USANDO FOREACH
-			pacientes.forEach(function(paciente){
-				addPacienteTabela(paciente);
-			});		
-			
+		var erroAjax = document.querySelector("#erro-ajax");
+			if( xhr.status == 200 ){
+				var resposta =  xhr.responseText;
+				var pacientes = JSON.parse(resposta);
+				erroAjax.classList.add("invisivel");
+				// USANDO FOREACH, MAS DA PRA FAZER COM O FOR NORMAL
+
+				pacientes.forEach(function(paciente){
+					addPacienteTabela(paciente);
+				});		
+			}else{
+				console.log(xhr.status);
+				console.log(xhr.responseText);
+				erroAjax.classList.remove("invisivel");
+			}
 		});
 		
 		xhr.send();
