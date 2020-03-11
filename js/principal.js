@@ -79,16 +79,17 @@ for(var i =0; i< paciente.length ; i++){
 				var paciente = pacientes[i];
 				var tdNome = paciente.querySelector(".info-nome");
 				var nome = tdNome.textContent;
-				if( nome != this.value ){
+				var expressão = new RegExp(this.value, "i");
+				if( !expressão.test(nome) ){
 					paciente.classList.add("invisivel");
 				}
 				else{
-				paciente.classList.remove("invisivel");
+					paciente.classList.remove("invisivel");
 				}
 			
 			}	
 		}else{
-			for(var i =0; i < pacientes.length; i++	){
+			for(var i =0; i < pacientes.length; i++){
 				pacientes[i].classList.remove("invisivel");
 			}
 		}
