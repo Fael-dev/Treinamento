@@ -62,4 +62,42 @@ for(var i =0; i< paciente.length ; i++){
 			return false;
 		}
 	}	
+	// SEPERAR EM UM NOVO ARQUIVO PESQUISA.JS
+	
+	var pesquisa = document.querySelector("#pesquisa-paciente");
+	console.log(pesquisa);
+	
+	pesquisa.addEventListener("input",function(){
+		console.log("Digitaram no campo pesquisa");
+		console.log(this.value);
+
+		var pacientes = document.querySelectorAll(".paciente");
+
+		for(var i =0; i > pacientes.length; i++){
+			var paciente = pacientes[i];
+			var tdNome = paciente.querySelector(".info-nome");
+			var nome = paciente.textContent;
+			
+		}	
+	
+
+	});
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				
