@@ -7,22 +7,14 @@ var botao = document.querySelector("#adicionar-paciente");
 		//Chamando função que ontem os dados do formulário
 		var paciente = obtemPacienteForm(form);
 		
-		//Chamando função que monta a linha
-		var pacienteTr = montarTr(paciente);
-		
 		var erros = validaPaciente(paciente);
-		
 		
 		if(erros.length > 0){
 			exibeMsgErros(erros);
 			return;
 		}
 		
-		//Armazenando a tabela em uma variável, pelo ID.
-		var tabela = document.querySelector("#tabela-pacientes");
-		
-		//Adicionando a linha de conteúdo criada dentro da tabela
-		tabela.appendChild(pacienteTr);
+		addPacienteTabela(paciente);
 
 		//Limpando formulário
 		form.reset();
@@ -30,6 +22,16 @@ var botao = document.querySelector("#adicionar-paciente");
 		msgErro.innerHTML = "";
 	});
 
+		function addPacienteTabela(paciente){
+			//Chamando função que monta	
+			var pacienteTr = montarTr(paciente);
+			//Armazenando a tabela em uma variável, pelo ID.
+			var tabela = document.querySelector("#tabela-pacientes");
+		
+			//Adicionando a linha de conteúdo criada dentro da tabela
+			tabela.appendChild(pacienteTr);
+			
+		}
 	
 		function exibeMsgErros(erros){
 			var ul = document.querySelector("#mensagens-erro");

@@ -110,7 +110,18 @@ for(var i =0; i< paciente.length ; i++){
 		xhr.open("GET", "https://api-pacientes.herokuapp.com/pacientes");
 		
 		xhr.addEventListener("load", function(){
-			console.log(xhr.responseText);
+			var resposta =  xhr.responseText;
+			var pacientes = JSON.parse(resposta);
+			/* FOR NORMAL ====
+				for( var i =0; i == pacientes.lentgh; i++ ){
+					addPacienteTabela(pacientes[i]);
+				}
+			*/
+			// USANDO FOREACH
+			pacientes.forEach(function(paciente){
+				addPacienteTabela(paciente);
+			});		
+			
 		});
 		
 		xhr.send();
