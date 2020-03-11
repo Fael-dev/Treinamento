@@ -62,7 +62,9 @@ for(var i =0; i< paciente.length ; i++){
 			return false;
 		}
 	}	
-	// SEPERAR EM UM NOVO ARQUIVO PESQUISA.JS
+	//==========================================================
+	// SEPARAR EM UM NOVO ARQUIVO PESQUISA.JS
+	//==========================================================
 	
 	var pesquisa = document.querySelector("#pesquisa-paciente");
 	console.log(pesquisa);
@@ -95,6 +97,35 @@ for(var i =0; i< paciente.length ; i++){
 		}
 
 	});
+
+	//==========================================================
+	// SEPARAR EM UM NOVO ARQUIVO BUSCAR-PACIENTE.JS
+	//==========================================================
+
+	var btnAdicionar = document.querySelector("#buscar-paciente");
+		
+	btnAdicionar.addEventListener("click", function(){
+		console.log("Buscando pacientes");
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "https://api-pacientes.herokuapp.com/pacientes");
+		
+		xhr.addEventListener("load", function(){
+			console.log(xhr.responseText);
+		});
+		
+		xhr.send();
+	});
+	 
+
+
+
+
+
+
+
+
+	
+
 	
 
 
